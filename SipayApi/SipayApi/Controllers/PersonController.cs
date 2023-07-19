@@ -55,7 +55,7 @@ public class PersonValidator : AbstractValidator<Person>
 
     }
 }
-
+ 
 //Bu sınıfa bir Validator tanımlandı.
 public class SalaryValidator : AbstractValidator<Person>
 {
@@ -114,13 +114,14 @@ public class PersonController : ControllerBase
     public IActionResult Post ([FromBody] Person person)
     {
         var validator = new SalaryValidator();
+
         ValidationResult result = validator.Validate(person);
 
         if (!result.IsValid) //doğrulama sonucunun geçerliliğiini kontrol ediyorum.
         {
             return BadRequest(result.Errors);
         }
-
+        
 
         return Ok(person);
     }
